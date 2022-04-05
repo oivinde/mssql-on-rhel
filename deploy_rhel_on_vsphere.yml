@@ -29,7 +29,7 @@
       hardware:
         memory_mb: "{{ vm_memory }}"
         num_cpus: "{{ vm_cpu }}"
-      customization_spec: "{{ vm_cuztomization_spec }}"
+      customization_spec: "{{ vm_customization_spec }}"
       state: poweredon
       wait_for_ip_address: yes 
       
