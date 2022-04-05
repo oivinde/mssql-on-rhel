@@ -1,3 +1,8 @@
+---
+- name: "Post configuration of VM"
+  hosts: "{{ vm_name }}" 
+  become: yes
+  
 tasks:
   - include_role:
       name: ansible-role-rhsm
