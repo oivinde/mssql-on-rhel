@@ -12,7 +12,7 @@
         password: "{{ rhsm_password }}"
         pool_ids: "{{ rhsm_pool_id }}"
         consumer_name: "{{ vm_name }}"
-        auto_attach: true 
+        auto_attach: false 
         force_register: yes
 
     - name: Enable relevant RHEL8 repos
