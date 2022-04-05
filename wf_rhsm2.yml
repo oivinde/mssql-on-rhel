@@ -5,5 +5,5 @@
   
   tasks:
     - include_role:
-        name: openstack.redhat-subscription
+        name: ansible-role-redhat-subscription
       
