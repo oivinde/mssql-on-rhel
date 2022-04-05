@@ -5,5 +5,5 @@
   
   tasks:
     - include_role:
-        name: ansible-role-rhsm
+        name: ansible-role-redhat-subscription
       
