@@ -2,8 +2,12 @@
 - name: "Post configuration of VM"
   hosts: "{{ vm_name }}" 
   become: yes
+  vars:
+    rhsm_repos:
+        - rhel-8-for-x86_64-baseos-rpms
+        - rhel-8-for-x86_64-appstream-rpms
+        - ansible-2.9-for-rhel-8-x86_64-rpms
   
-  tasks:
-    - include_role:
-        name: ansible-role-redhat-subscription
+  roles:
+    - ansible-role-redhat-subscription
       
