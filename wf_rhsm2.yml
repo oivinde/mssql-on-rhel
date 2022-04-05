@@ -1,7 +1,7 @@
 ---
 - name: "Post configuration of VM"
   hosts: "{{ vm_name }}" 
-  become: yes
+#  become: yes
   vars:
     rhsm_repos:
         - rhel-8-for-x86_64-baseos-rpms
