@@ -4,14 +4,21 @@
   connection: local
   gather_facts: no
   vars:
-    vcenter_server:
-    vcenter_user:
-    vcenter_pass:
+#    vcenter_server:
+#    vcenter_user:
+#    vcenter_pass:
     vm_name: 
     vm_template: 
     guest_domain:
 
   tasks:
+  - name: Use AAP VMware credentials
+    set_fact:
+      vcenter_credentials:
+        vcenter_server: '{{ lookup("env", "VMWARE_HOST") }}'
+        vcenter_user: '{{ lookup("env", "VMWARE_USER") }}'
+        vcenter_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+        
   - name: Clone the template
     vmware_guest:
       hostname: "{{ vcenter_server }}"
