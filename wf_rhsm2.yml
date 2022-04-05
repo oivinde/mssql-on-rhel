@@ -3,7 +3,7 @@
   hosts: "{{ vm_name }}" 
   become: yes
   
-tasks:
-  - include_role:
-      name: ansible-role-rhsm
+  tasks:
+    - include_role:
+        name: ansible-role-rhsm
       
