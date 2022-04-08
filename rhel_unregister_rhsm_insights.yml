@@ -1,0 +1,12 @@
+---
+- hosts: "{{ vm_name }}" 
+  gather_facts: false
+  become: True
+  
+- name: Subscription Manager Unregister
+  command: subscription-manager unregister 
+  ignore_errors: True
+
+- name: Red Hat Insights Unregister
+  command: insights-client --unregister 
+  ignore_errors: True
