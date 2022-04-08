@@ -4,9 +4,9 @@
   become: True
   
 - name: Subscription Manager Unregister
-  command: subscription-manager unregister 
+  shell: subscription-manager unregister 
   ignore_errors: True
 
 - name: Red Hat Insights Unregister
-  command: insights-client --unregister 
+  shell: insights-client --unregister 
   ignore_errors: True
