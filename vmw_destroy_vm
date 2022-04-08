@@ -1,0 +1,36 @@
+---
+- name: Create a VM from a template
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    vm_name: 
+
+  tasks:
+  - name: Use AAP VMware credentials
+    set_fact:
+      vcenter_server: '{{ lookup("env", "VMWARE_HOST") }}'
+      vcenter_user: '{{ lookup("env", "VMWARE_USER") }}'
+      vcenter_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+        
+  - name: Power off "{{ vm_name }}"
+    vmware_guest:
+      hostname: "{{ vcenter_server }}"
+      username: "{{ vcenter_user }}"
+      password: "{{ vcenter_pass }}"
+      validate_certs: False
+      name: "{{ vm_name }}"
+      cluster: "{{ vm_cluster }}"
+      state: poweredoff
+
+    - name: Remove "{{ vm_name }}"
+      vmware_guest:
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        validate_certs: no
+        cluster: "DC1_C1"
+        name: "{{ vm_name }}"
+        state: absent
+      delegate_to: localhost
+      register: facts
