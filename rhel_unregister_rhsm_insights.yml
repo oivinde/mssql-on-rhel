@@ -1,12 +1,12 @@
 ---
 - hosts: "{{ vm_name }}" 
   gather_facts: false
-  become: True
-  
-- name: Subscription Manager Unregister
-  shell: subscription-manager unregister 
-  ignore_errors: True
-
-- name: Red Hat Insights Unregister
-  shell: insights-client --unregister 
-  ignore_errors: True
+  become: true
+  tasks:
+  - name: Red Hat Insights Unregister
+    ansible.builtin.shell: insights-client --unregister
+    ignore_errors: True
+         
+  - name: Subscription Manager Unregister
+    ansible.builtin.shell: subscription-manager unregister
+    ignore_errors: True
