@@ -4,9 +4,6 @@
   connection: local
   gather_facts: no
   vars:
-#    vcenter_server:
-#    vcenter_user:
-#    vcenter_pass:
     vm_name: 
     vm_template: 
     guest_domain:
