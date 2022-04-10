@@ -1,5 +1,5 @@
 ---
-- name: Create a VM from a template
+- name: Destroy VM in vSphere vCenter
   hosts: localhost
   connection: local
   gather_facts: no

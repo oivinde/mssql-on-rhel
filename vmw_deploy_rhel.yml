@@ -5,7 +5,13 @@
   gather_facts: no
   vars:
     vm_name: 
-    vm_template: 
+    vm_datacenter:
+    vm_cluster:
+    vm_folder:
+    vm_template:
+    vm_datastore:
+    vm_customization_spec:
+    guest_name: "{{ vm_name }}"
     guest_domain:
 
   tasks:
