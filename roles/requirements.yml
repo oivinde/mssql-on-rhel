@@ -1,4 +1,3 @@
 - src: https://github.com/openstack/ansible-role-redhat-subscription.git
   scm: git
-- src: https://github.com/RedHatInsights/ansible-collections-insights.git
-  scm: git
+

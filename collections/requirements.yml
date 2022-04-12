@@ -11,3 +11,6 @@ collections:
 
   - name: community.vmware
     src: https://aap-ah.ekeberg.io/api/galaxy/content/community/
+
+  - name: redhat.insights
+    src: https://aap-ah.ekeberg.io/api/galaxy/content/rh-certified/
