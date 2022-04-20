@@ -1,0 +1,12 @@
+
+---
+- name: "Post configuration of VM"
+  hosts: "{{ vm_name }}" 
+  collections: 
+    - redhat.insights 
+
+  tasks:
+  - name: install insights compliance
+    import_role:
+      name: redhat.insights.compliance
+      tasks_from: install
