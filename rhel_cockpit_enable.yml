@@ -15,10 +15,9 @@
         cockpit_enabled: yes
         cockpit_started: yes
 
-    - name: Configure Firewall for Web Console
-      include_role:
-        name: linux-system-roles.firewall
-      vars:
-        firewall:
-          service: cockpit
-          state: enabled
+    - name: Open Firewall for Web Console
+      firewalld:
+        service: cockpit
+        permanent: yes
+        immediate: yes
+        state: enabled
