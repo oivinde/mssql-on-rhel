@@ -3,8 +3,8 @@ collections:
   - name: redhat.rhel_system_roles
     src: https://aap-ah.ekeberg.io/api/galaxy/content/rh-certified/
   
-  - name: redhatinsights.insights
-    src: https://aap-ah.ekeberg.io/api/galaxy/content/rh-certified/
+  #- name: redhatinsights.insights
+  #  src: https://aap-ah.ekeberg.io/api/galaxy/content/rh-certified/
 
   - name: microsoft.sql
     src: https://aap-ah.ekeberg.io/api/galaxy/content/rh-certified/
