@@ -8,7 +8,6 @@
   - name: Install necessary packages
     ansible.builtin.package:
       name:
-        - ansible
         - rhc-worker-playbook
       state: latest
 
