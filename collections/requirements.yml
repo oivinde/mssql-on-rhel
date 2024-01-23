@@ -1,16 +1,16 @@
 ---
 collections:
   - name: redhat.rhel_system_roles
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+    source: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
   
   - name: redhatinsights.insights
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+    source: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
 
   - name: microsoft.sql
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+    source: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
 
   - name: community.vmware
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/community/
+    source: https://aap-pah1.ekeberg.io/api/galaxy/content/community/
 
   - name: redhat.insights
-    src: https://aap-pah.ekeberg.io/api/galaxy/content/rh-certified/
+    source: https://aap-pah.ekeberg.io/api/galaxy/content/rh-certified/
