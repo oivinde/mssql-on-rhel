@@ -6,5 +6,4 @@ collections:
     src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
   - name: redhatinsights.insights
     src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
-  - name: redhat.insights
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+
