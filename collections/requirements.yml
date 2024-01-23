@@ -1,7 +1,9 @@
 ---
 collections:
+
   - name: redhat.rhel_system_roles
     source: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+    token: f95d918dfb380188ea60c60be8fc29a69a7f5115
   
   - name: redhatinsights.insights
     source: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
