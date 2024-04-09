@@ -42,7 +42,7 @@
       state: poweredon
       wait_for_ip_address: yes 
       
-  - name: Pass variables to Tower Workflows
+  - name: Pass variables to Ansible controller workflows
     set_stats:
       data:
         vm_name: "{{ vm_name }}"
