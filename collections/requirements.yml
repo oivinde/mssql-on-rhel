@@ -6,7 +6,7 @@ collections:
     src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
   - name: redhatinsights.insights
     src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
-  - name: redhat.rhel_system_roles
-    version: 1.22.0
-    src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
+  #- name: redhat.rhel_system_roles
+  #  version: 1.22.0
+  #  src: https://aap-pah1.ekeberg.io/api/galaxy/content/rh-certified/
 
