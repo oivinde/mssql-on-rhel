@@ -1,24 +1,23 @@
 ---
-- name: "Post configuration of VM"
+- name: Post configuration of VM
   hosts: "{{ vm_name }}"
-  become: yes
+  become: true
 
-  tasks: 
-  
-  - name: Install necessary packages
-    ansible.builtin.package:
-      name:
-        - rhc-worker-playbook
-      state: latest
+  tasks:
+    - name: Install necessary packages
+      ansible.builtin.package:
+        name:
+          - rhc-worker-playbook
+        state: latest
 
-  - name: Register with rhc
-    shell: |
-      rhc connect 
+    - name: Register with rhc
+      ansible.builtin.shell: |-
+        rhc connect 
 
-      expect "User:"
-      send "{{ rhsm_username }}\n"
+        expect "User:"
+        send "{{ rhsm_username }}\n"
 
-      expect "Password:"
-      send "{{ rhsm_password }}\n"
+        expect "Password:"
+        send "{{ rhsm_password }}\n"
 
-      exit 0
+        exit 0

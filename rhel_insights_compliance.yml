@@ -1,12 +1,11 @@
-
 ---
-- name: "Install and upload Insights compliance data"
-  hosts: "{{ vm_name }}" 
-  collections: 
-    - redhat.insights 
+- name: Install and upload Insights compliance data
+  hosts: "{{ vm_name }}"
+  collections:
+    - redhat.insights
 
   tasks:
-  - name: Install insights compliance
-    import_role:
-      name: redhat.insights.compliance
-      tasks_from: install
+    - name: Install insights compliance
+      ansible.builtin.import_role:
+        name: redhat.insights.compliance
+        tasks_from: install

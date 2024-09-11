@@ -3,16 +3,15 @@
   hosts: localhost
   become: false
   gather_facts: false
-  collections: 
-    - ansible.controller 
+  collections:
+    - ansible.controller
   tasks:
-
-  - name: Create SQL server project
-    project:
-      name: MSSQL Project
-      organization: Default
-      state: present
-      scm_update_on_launch: True
-      scm_delete_on_update: True
-      scm_type: git
-      scm_url: https://github.com/oivinde/mssql-on-rhel.git
+    - name: Create SQL server project
+      awx.awx.project:
+        name: MSSQL Project
+        organization: Default
+        state: present
+        scm_update_on_launch: true
+        scm_delete_on_update: true
+        scm_type: git
+        scm_url: https://github.com/oivinde/mssql-on-rhel.git
