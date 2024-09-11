@@ -2,35 +2,34 @@
 - name: Destroy VM in vSphere vCenter
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: false
   vars:
-    vm_name: 
-
+    vm_name:
   tasks:
-  - name: Use AAP VMware credentials
-    set_fact:
-      vcenter_server: '{{ lookup("env", "VMWARE_HOST") }}'
-      vcenter_user: '{{ lookup("env", "VMWARE_USER") }}'
-      vcenter_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-        
-  - name: Power off "{{ vm_name }}"
-    vmware_guest:
-      hostname: "{{ vcenter_server }}"
-      username: "{{ vcenter_user }}"
-      password: "{{ vcenter_pass }}"
-      validate_certs: False
-      name: "{{ vm_name }}"
-      cluster: "{{ vm_cluster }}"
-      state: poweredoff
+    - name: Use AAP VMware credentials
+      ansible.builtin.set_fact:
+        vcenter_server: '{{ lookup("env", "VMWARE_HOST") }}'
+        vcenter_user: '{{ lookup("env", "VMWARE_USER") }}'
+        vcenter_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
 
-  - name: Remove "{{ vm_name }}"
-    vmware_guest:
-      hostname: "{{ vcenter_server }}"
-      username: "{{ vcenter_user }}"
-      password: "{{ vcenter_pass }}"
-      validate_certs: no
-      cluster: 
-      name: "{{ vm_name }}"
-      state: absent
-    delegate_to: localhost
-    register: facts
+    - name: Power off "{{ vm_name }}"
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        validate_certs: false
+        name: "{{ vm_name }}"
+        cluster: "{{ vm_cluster }}"
+        state: poweredoff
+
+    - name: Remove "{{ vm_name }}"
+      delegate_to: localhost
+      register: facts
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        validate_certs: false
+        cluster:
+        name: "{{ vm_name }}"
+        state: absent

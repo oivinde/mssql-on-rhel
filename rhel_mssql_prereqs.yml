@@ -1,22 +1,22 @@
---- 
-- name: Solve prereqs for sql installation on the host  
+---
+- name: Solve prereqs for sql installation on the host
   hosts: "{{ vm_name }}"
-  become: yes 
+  become: true
 
-  tasks: 
-  - name: Permit mssql traffic in fw on port 1433/tcp
-    firewalld:
-      port: 1433/tcp
-      permanent: yes
-      immediate: yes
-      state: enabled 
+  tasks:
+    - name: Permit mssql traffic in fw on port 1433/tcp
+      ansible.posix.firewalld:
+        port: 1433/tcp
+        permanent: true
+        immediate: true
+        state: enabled
 
-  - name: Permit monitoring traffic 
-    firewalld:
-      service: "{{ item }}"
-      permanent: yes
-      immediate: yes
-      state: enabled 
-    with_items:
-      - pmcd
-      - pmproxy
+    - name: Permit monitoring traffic
+      with_items:
+        - pmcd
+        - pmproxy
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        permanent: true
+        immediate: true
+        state: enabled

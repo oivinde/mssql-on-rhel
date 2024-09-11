@@ -1,11 +1,10 @@
 ---
-- name: "Post configuration of VM"
-  hosts: "{{ vm_name }}" 
+- name: Post configuration of VM
+  hosts: "{{ vm_name }}"
   vars:
     rhsm_repos:
-        - rhel-8-for-x86_64-baseos-rpms
-        - rhel-8-for-x86_64-appstream-rpms
-  
+      - rhel-8-for-x86_64-baseos-rpms
+      - rhel-8-for-x86_64-appstream-rpms
+
   roles:
     - ansible-role-redhat-subscription
-      

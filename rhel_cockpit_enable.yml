@@ -1,22 +1,20 @@
 ---
-- name: "Install System Role for Web Console"
+- name: Install System Role for Web Console
   hosts: "{{ vm_name }}"
-  become: yes
+  become: true
 
   tasks:
     - name: Install RHEL Web Console (Cockpit)
-      include_role:
-        name: redhat.rhel_system_roles.cockpit
       vars:
         cockpit_packages: default
-        #cockpit_packages: minimal
-        #cockpit_packages: full
-        cockpit_enabled: yes
-        cockpit_started: yes
+        cockpit_enabled: true
+        cockpit_started: true
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.cockpit
 
     - name: Open Firewall for Web Console
-      firewalld:
+      ansible.posix.firewalld:
         service: cockpit
-        permanent: yes
-        immediate: yes
+        permanent: true
+        immediate: true
         state: enabled
