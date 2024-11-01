@@ -46,7 +46,7 @@
           - size_gb: "{{ vm_disk_size }}"
             type: default
         
-        guest_customization_spec: "{{ vm_customization_spec }}"
+        guest_customization_spec: "{{ guest_customization_spec }}"
         state: present
       register: vm_name
 
