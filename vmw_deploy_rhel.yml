@@ -52,7 +52,7 @@
         guest_customization_spec: "{{ vm_customization_spec }}"
       state: poweredon
       wait_for_ip_address: yes
-    register: "{{ vm_name }}"
+      register: "{{ vm_name }}"
       
     - name: Pass variables to Ansible controller workflows
       set_stats:
