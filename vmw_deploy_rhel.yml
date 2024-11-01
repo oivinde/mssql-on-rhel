@@ -48,7 +48,7 @@
         
         guest_customization_spec: "{{ vm_customization_spec }}"
         state: present
-      register: "{{ vm_name }}"
+      register: my_vm
 
 
     - name: Wait until my VM is ready
@@ -72,7 +72,7 @@
         - name: Turn my VM on
           vmware.vmware_rest.vcenter_vm_power:
             state: start
-            vm: "{{ vm_name }}"
+            vm: "{{ my_vm.id }}"
       
     - name: Pass variables to Ansible controller workflows
       set_stats:
