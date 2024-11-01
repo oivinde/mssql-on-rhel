@@ -38,7 +38,7 @@
         source: "{{ template_name }}"
         cpu:
           hot_add_enabled: true
-          count: "{{ vm_cpu }}"
+          vm_cpu_count: "{{ vm_cpu }}"
         memory:
           hot_add_enable: true
           size_MiB: "{{ vm_memory }}"
