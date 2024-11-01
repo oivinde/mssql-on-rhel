@@ -54,11 +54,11 @@
       vmware.vmware_rest.vcenter_vm_tools_info:
         vm: "{{ vm_name }}"
       register: vm_tools_info
-        until:
-          - vm_tools_info is not failed
-          - vm_tools_info.value.run_state == "RUNNING"
-        retries: 10
-        delay: 5
+      until:
+        - vm_tools_info is not failed
+        - vm_tools_info.value.run_state == "RUNNING"
+      retries: 10
+      delay: 5
 
     - name: Power on the VM
       vmware.vmware_rest.vcenter_vm_power:
