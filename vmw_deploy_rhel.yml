@@ -46,9 +46,13 @@
           - size_gb: "{{ vm_disk_size }}"
             type: default
         
-        guest_customization_spec: "{{ guest_customization_spec }}"
         state: present
       register: vm_name
+
+    - name: Power on the VM
+      vmware.vmware_rest.vcenter_vm_power:
+        state: start          
+        vm: "{{ vm_name }}"
 
     - name: Wait until my VM is ready
       vmware.vmware_rest.vcenter_vm_tools_info:
@@ -60,10 +64,25 @@
       retries: 10
       delay: 5
 
-    - name: Power on the VM
-      vmware.vmware_rest.vcenter_vm_power:
-        state: start          
+    - name: Customize the VM
+      vmware.vmware_rest.vcenter_vm_guest_customization:
         vm: "{{ vm_name }}"
+        global_DNS_settings:
+          dns_suffix_list:
+            - ekeberg.io
+          dns_servers:
+            - "192.168.0.100"
+        interfaces:
+          - adapter:
+              ipv4:
+                type: DHCP
+        configuration_spec:
+          linux_config:
+            domain: ekeberg.io
+            hostname:
+              fixed_name: "{{ vm_name }}"
+              type: FIXED
+
       
     - name: Pass variables to Ansible controller workflows
       set_stats:
