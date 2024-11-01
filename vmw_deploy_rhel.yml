@@ -30,10 +30,9 @@
         vcenter_hostname: "{{ vcenter_hostname }}"
         vcenter_password: "{{ vcenter_password }}"
         vcenter_username: "{{ vcenter_username }}"
-        placement:
-          cluster: "{{ vm_cluster }}"
-          datastore: "{{ vm_datacenter }}"
-          folder: "{{ vm_folder }}"
+        cluster: "{{ vm_cluster }}"
+        datastore: "{{ vm_datacenter }}"
+        folder: "{{ vm_folder }}"
         name: "{{ vm_name }}"
         source: "{{ template_name }}"
         cpu:
