@@ -30,9 +30,10 @@
         vcenter_hostname: "{{ vcenter_hostname }}"
         vcenter_password: "{{ vcenter_password }}"
         vcenter_username: "{{ vcenter_username }}"
-        cluster: "{{ vm_cluster }}"
-        datastore: "{{ vm_datacenter }}"
-        folder: "{{ vm_folder }}"
+        placement:
+          cluster: "{{ lookup('vmware.vmware_rest.cluster_moid', vm_cluster }}"
+          datastore: "{{ lookup('vmware.vmware_rest.datastore_moid', vm_datacenter }}"
+          folder: "{{ lookup('vmware.vmware_rest.folder_moid', vm_folder }}"
         name: "{{ vm_name }}"
         source: "{{ template_name }}"
         cpu:
