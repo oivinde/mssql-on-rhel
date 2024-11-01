@@ -50,25 +50,20 @@
         state: present
       register: my_vm
 
-
     - name: Wait until my VM is ready
-      tasks:
-        - name: Wait until my VM is ready
-          vmware.vmware_rest.vcenter_vm_tools_info:
-            vm: "{{ my_vm.id }}"
-          register: vm_tools_info
-          until:
-            - vm_tools_info is not failed
-            - vm_tools_info.value.run_state == "RUNNING"
-          retries: 10
-          delay: 5
+      vmware.vmware_rest.vcenter_vm_tools_info:
+          vm: "{{ my_vm.id }}"
+        register: vm_tools_info
+        until:
+          - vm_tools_info is not failed
+          - vm_tools_info.value.run_state == "RUNNING"
+        retries: 10
+        delay: 5
 
     - name: Power on the VM
-      tasks:
-        - name: Turn my VM on
-          vmware.vmware_rest.vcenter_vm_power:
-            state: start
-            vm: "{{ my_vm.id }}"
+      vmware.vmware_rest.vcenter_vm_power:
+        state: start          
+        vm: "{{ my_vm.id }}"
       
     - name: Pass variables to Ansible controller workflows
       set_stats:
