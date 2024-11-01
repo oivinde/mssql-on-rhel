@@ -64,9 +64,6 @@
             - vm_tools_info.value.run_state == "RUNNING"
           retries: 10
           delay: 5
-        
-        wait_for_ip_address: yes
-      register: "{{ vm_name }}"
 
     - name: Power on the VM
       hosts: localhost
