@@ -26,12 +26,12 @@
         api_user: '{{ lookup("env", "VMWARE_USER") }}'
         api_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
 
-  - name: Clone VM Template
-    vmware.vmware_rest.vcenter_vm:
-      validate_certs: False
-      vcenter_hostname: "{{ vcenter_hostname }}"
-      vcenter_password: "{{ api_pass }}"
-      vcenter_username: "{{ api_user }}"
+    - name: Clone VM Template
+      vmware.vmware_rest.vcenter_vm:
+        validate_certs: False
+        vcenter_hostname: "{{ vcenter_hostname }}"
+        vcenter_password: "{{ api_pass }}"
+        vcenter_username: "{{ api_user }}"
       placement:
         cluster: "{{ lookup('vmware.vmware_rest.cluster_moid', 'vm_cluster') }}"
         datastore: "{{ lookup('vmware.vmware_rest.datastore_moid', 'vm_datacenter') }}"
@@ -54,11 +54,11 @@
       wait_for_ip_address: yes
     register: "{{ vm_name }}"
       
-  - name: Pass variables to Ansible controller workflows
-    set_stats:
-      data:
-        vm_name: "{{ vm_name }}"
-        vm_cpu: "{{ vm_cpu }}"
-        vm_memory: "{{ vm_memory }}"
-        vm_disk_size: "{{ vm_disk_size }}"
-        vm_datastore: "{{ vm_datastore }}"
+    - name: Pass variables to Ansible controller workflows
+      set_stats:
+        data:
+          vm_name: "{{ vm_name }}"
+          vm_cpu: "{{ vm_cpu }}"
+          vm_memory: "{{ vm_memory }}"
+          vm_disk_size: "{{ vm_disk_size }}"
+          vm_datastore: "{{ vm_datastore }}"
