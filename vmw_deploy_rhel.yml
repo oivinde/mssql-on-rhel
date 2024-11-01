@@ -52,8 +52,8 @@
 
     - name: Wait until my VM is ready
       vmware.vmware_rest.vcenter_vm_tools_info:
-          vm: "{{ vm_name }}"
-        register: vm_tools_info
+        vm: "{{ vm_name }}"
+      register: vm_tools_info
         until:
           - vm_tools_info is not failed
           - vm_tools_info.value.run_state == "RUNNING"
