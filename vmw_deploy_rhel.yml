@@ -3,21 +3,20 @@
   hosts: localhost
   connection: local
   gather_facts: false
-  collections:
-    - vmware.vmware_rest
   vars:
-    vcenter_hostname:
-    api_user:
-    api_password:
-    template_name:
-    new_vm_name:
-    datacenter:
-    cluster:
-    resource_pool:
-    datastore:
-    num_cpus:
-    memory_mb:
-    disk_size_gb:
+    vcenter_hostname: 
+    vcenter_username: 
+    vcenter_password: 
+    vcenter_validate_certs: false
+    template_name: 
+    vm_name: 
+    vm_folder: 
+    vm_resource_pool:
+    vm_datastore:
+    vm_cluster:
+    vm_memory_mb:
+    vm_cpu_count:
+    vm_disk_gb:
 
   tasks:
     - name: Use AAP VMware credentials
@@ -28,31 +27,55 @@
 
     - name: Clone VM Template
       vmware.vmware_rest.vcenter_vm:
-        validate_certs: False
         vcenter_hostname: "{{ vcenter_hostname }}"
         vcenter_password: "{{ api_pass }}"
         vcenter_username: "{{ api_user }}"
-      placement:
-        cluster: "{{ lookup('vmware.vmware_rest.cluster_moid', 'vm_cluster') }}"
-        datastore: "{{ lookup('vmware.vmware_rest.datastore_moid', 'vm_datacenter') }}"
-        folder: "{{ lookup('vmware.vmware_rest.folder_moid', 'vm_folder') }}"
-        #resource_pool: "{{ lookup('vmware.vmware_rest.resource_pool_moid', 'vm_resourcepool') }}"
-        source: "{{ lookup('vmware.vmware_rest.vm_moid', 'vm_template') }}"
-      name: "{{ vm_name }}"
-      cpu:
-        hot_add_enabled: true
-        count: "{{ vm_cpu }}"
-      memory:
-        hot_add_enable: true
-        size_MiB: "{{ vm_memory }}"
-      disks:
-      - size_gb: "{{ vm_disk_size }}"
-        type: default
-        datastore: "{{ vm_datastore }}"
+        placement:
+          cluster: "{{ vm_cluster }}"
+          datastore: "{{ vm_datacenter }}"
+          folder: "{{ vm_folder }}"
+        name: "{{ vm_name }}"
+        source: "{{ template_name }}"
+        cpu:
+          hot_add_enabled: true
+          count: "{{ vm_cpu }}"
+        memory:
+          hot_add_enable: true
+          size_MiB: "{{ vm_memory }}"
+        disks:
+          - size_gb: "{{ vm_disk_size }}"
+            type: default
+        
         guest_customization_spec: "{{ vm_customization_spec }}"
-      state: poweredon
-      wait_for_ip_address: yes
+        state: present
       register: "{{ vm_name }}"
+
+
+    - name: Wait until my VM is ready
+      hosts: localhost
+      gather_facts: false
+      tasks:
+        - name: Wait until my VM is ready
+          vmware.vmware_rest.vcenter_vm_tools_info:
+            vm: "{{ my_vm.id }}"
+          register: vm_tools_info
+          until:
+            - vm_tools_info is not failed
+            - vm_tools_info.value.run_state == "RUNNING"
+          retries: 10
+          delay: 5
+        
+        wait_for_ip_address: yes
+      register: "{{ vm_name }}"
+
+    - name: Power on the VM
+      hosts: localhost
+      gather_facts: false
+      tasks:
+        - name: Turn my VM on
+          vmware.vmware_rest.vcenter_vm_power:
+            state: start
+            vm: "{{ vm_name }}"
       
     - name: Pass variables to Ansible controller workflows
       set_stats:
