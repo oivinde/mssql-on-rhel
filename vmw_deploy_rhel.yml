@@ -22,8 +22,8 @@
     - name: Use AAP VMware credentials
       ansible.builtin.set_fact:
         vcenter_hostname: '{{ lookup("env", "VMWARE_HOST") }}'
-        api_user: '{{ lookup("env", "VMWARE_USER") }}'
-        api_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+        vcenter_username: '{{ lookup("env", "VMWARE_USER") }}'
+        vcenter_password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
 
     - name: Clone VM Template
       vmware.vmware_rest.vcenter_vm:
