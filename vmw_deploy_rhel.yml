@@ -19,11 +19,11 @@
     memory_mb:
     disk_size_gb:
 
-  - name: Use AAP VMware credentials
-    set_fact:
-      vcenter_hostname: '{{ lookup("env", "VMWARE_HOST") }}'
-      api_user: '{{ lookup("env", "VMWARE_USER") }}'
-      api_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+- name: Use AAP VMware credentials
+  set_fact:
+    vcenter_hostname: '{{ lookup("env", "VMWARE_HOST") }}'
+    api_user: '{{ lookup("env", "VMWARE_USER") }}'
+    api_pass: '{{ lookup("env", "VMWARE_PASSWORD") }}'
 
   tasks:
   - name: Clone VM Template
@@ -62,4 +62,3 @@
         vm_memory: "{{ vm_memory }}"
         vm_disk_size: "{{ vm_disk_size }}"
         vm_datastore: "{{ vm_datastore }}"
-
