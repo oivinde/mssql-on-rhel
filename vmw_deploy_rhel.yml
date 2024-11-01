@@ -28,8 +28,8 @@
     - name: Clone VM Template
       vmware.vmware_rest.vcenter_vm:
         vcenter_hostname: "{{ vcenter_hostname }}"
-        vcenter_password: "{{ api_pass }}"
-        vcenter_username: "{{ api_user }}"
+        vcenter_password: "{{ vcenter_password }}"
+        vcenter_username: "{{ vcenter_username }}"
         placement:
           cluster: "{{ vm_cluster }}"
           datastore: "{{ vm_datacenter }}"
